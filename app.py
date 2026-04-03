@@ -10,8 +10,10 @@ logging.basicConfig(level=logging.INFO, format='%(levelname)s - %(message)s')
 app = Flask(__name__)
 CORS(app) 
 
-# 2. Configuración directa de la API Key 
-genai.configure(api_key="AIzaSyCMw8NqjSXiRy72HXSanPyiF2L63IpZ1Gs")
+# 2. Configuración segura de la API Key
+# Ahora lee la clave desde las variables de entorno de Render
+api_key = os.getenv("GEMINI_API_KEY")
+genai.configure(api_key=api_key)
 
 # 3. Personalidad inyectada de forma nativa
 INSTRUCCIONES_SISTEMA = """
